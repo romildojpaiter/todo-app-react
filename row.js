@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Switch } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 
 // create a component
 class Row extends Component {
@@ -14,8 +14,12 @@ class Row extends Component {
                 <Switch value={complete}
                         onValueChange={this.props.onComplete} />
                 <View style={styles.textWrap}>
+                    <Text>{complete}</Text>
                     <Text style={[styles.texts, complete && styles.complete]}>{this.props.text}</Text>
                 </View>
+                <TouchableOpacity onPress={this.props.onRemove}>
+                    <Text style={styles.destroy}>X</Text>
+                </TouchableOpacity>                   
             </View>
         );
     }
@@ -39,6 +43,10 @@ const styles = StyleSheet.create({
     texts: {
         fontSize: 20,
         color: '#4d4d4d'
+    },
+    destroy: {
+        fontSize: 20,
+        color: '#cc9a9a'
     }
 });
 
