@@ -1,13 +1,29 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 // create a component
 class Footer extends Component {
     render() {
+
+        const { filter } = this.props;
+
         return (
             <View style={styles.container}>
-                <Text>Footer</Text>
+                <View style={styles.filters}>
+                    <TouchableOpacity style={[styles.filter, filter === "ALL" && styles.selected]}
+                        onPress={() => this.props.onFilter('ALL')}>
+                        <Text>All</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.filter, filter === "ACTIVE" && styles.selected]}
+                        onPress={() => this.props.onFilter('ACTIVE')}>
+                        <Text>Active</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.filter, filter === "COMPLETED" && styles.selected]}
+                        onPress={() => this.props.onFilter('COMPLETED')}>
+                        <Text>Completed</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -16,11 +32,24 @@ class Footer extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 0.1,
-        justifyContent: 'center',
+        padding: 16,
+        flexDirection: "row",
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        justifyContent: 'space-between',
+        // backgroundColor: '#2c3e50',
     },
+    filters: {
+        flexDirection: "row"
+    },
+    filter: {
+        padding: 8,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: "transparent"
+    },
+    selected: {
+        borderColor: "#470808"
+    }
 });
 
 //make this component available to the app
