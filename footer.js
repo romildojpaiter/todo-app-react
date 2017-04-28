@@ -10,6 +10,7 @@ class Footer extends Component {
 
         return (
             <View style={styles.container}>
+                <Text>{this.props.count} count</Text>
                 <View style={styles.filters}>
                     <TouchableOpacity style={[styles.filter, filter === "ALL" && styles.selected]}
                         onPress={() => this.props.onFilter('ALL')}>
@@ -24,6 +25,9 @@ class Footer extends Component {
                         <Text>Completed</Text>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity onPress={this.props.onClearComplete}>
+                  <Text>Clear</Text>
+                </TouchableOpacity>
             </View>
         );
     }
